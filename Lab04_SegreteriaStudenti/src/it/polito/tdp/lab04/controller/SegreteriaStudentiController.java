@@ -61,47 +61,16 @@ public class SegreteriaStudentiController {
     @FXML
     void doCercaCorsi(ActionEvent event) {
     	
-//    	int matricola = Integer.parseInt(txtMatricola.getText());
-//    	
-//    	try {
-//    		txtResult.appendText(model.cercaCorsiDatoStudente(model.getStudente(matricola)).toString());	
-//    	} catch (RuntimeException e) {
-//			txtResult.setText("ERRORE DI CONNESSIONE AL DATABASE!");
-//		}
+    	int matricola = Integer.parseInt(txtMatricola.getText());
     	
-    	
-    	txtResult.clear();
-
-		try {
-
-			int matricola = Integer.parseInt(txtMatricola.getText());
-
-			Studente studente = model.getStudente(matricola);
-			if (studente == null) {
-				txtResult.appendText("Nessun risultato: matricola inesistente");
-				return;
-			}
-
-			List<Corso> corsi = model.cercaCorsiDatoStudente(studente);
-
-			StringBuilder sb = new StringBuilder();
-
-			for (Corso corso : corsi) {
-				sb.append(String.format("%-8s ", corso.getCodins()));
-				sb.append(String.format("%-4s ", corso.getNumeroCrediti()));
-				sb.append(String.format("%-45s ", corso.getNome()));
-				sb.append(String.format("%-4s ", corso.getPeriodoDidattico()));
-				sb.append("\n");
-			}
-			txtResult.appendText(sb.toString());
-
-		} catch (NumberFormatException e) {
-			txtResult.setText("Inserire una matricola nel formato corretto.");
-		} catch (RuntimeException e) {
+    	try {
+    		txtResult.appendText(model.cercaCorsiDatoStudente(model.getStudente(matricola)).toString());	
+    	} catch (RuntimeException e) {
 			txtResult.setText("ERRORE DI CONNESSIONE AL DATABASE!");
 		}
     	
-
+    	
+    	
     }
 
     @FXML
